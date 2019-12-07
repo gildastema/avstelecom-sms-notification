@@ -29,7 +29,7 @@ class Avstelecomsms
                     'id'            => config('avstelecomsms.id'),
                     'timestamp'     => $timestamp,
                     'signature'     => hash_hmac('SHA1', config('avstelecomsms.token') . $timestamp, config('avstelecomsms.secret')),
-                    'phonenumber'   => $phone,
+                    'phonenumber'   => $this->getPhone($phone),
                     'sms'           => $message,
                     'schedule'      => ''
                 ]
