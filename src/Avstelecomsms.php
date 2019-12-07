@@ -13,7 +13,13 @@ class Avstelecomsms
     {
         $this->client = $client;
     }
-
+    /**
+     * Undocumented function
+     *
+     * @param string $phone E.164 2376XXXXXXX
+     * @param string $message
+     * @return bool
+     */
     public function send(string $phone, string $message)
     {
         $timestamp = time();
@@ -36,5 +42,12 @@ class Avstelecomsms
         } catch (GuzzleException $e) {
             return false;
         }
+    }
+
+    private function getPhone(string $phone): string
+    {
+        if (sizeof($phone) == 9)
+            return '237' . $phone;
+        return $phone;
     }
 }

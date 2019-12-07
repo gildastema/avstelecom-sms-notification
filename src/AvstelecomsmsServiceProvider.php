@@ -18,9 +18,6 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config-avstelecomsms.php' => config_path('avstelecomsms.php'),
             ], 'config');
         }
-        $this->app->bind(Client::class, function () {
-            new Client();
-        });
     }
 
     /**
@@ -31,6 +28,9 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/config-avstelecomsms.php', 'avstelecomsms');
 
+        $this->app->singleton(Client::class, function () {
+            new Client();
+        });
         // Register the main class to use with the facade
         $this->app->singleton('avstelecomsms', function () {
             return new Avstelecomsms;
