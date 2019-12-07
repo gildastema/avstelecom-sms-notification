@@ -1,4 +1,4 @@
-# Very short description of the package
+# Laravel Notification for SMS AVSTELECOM
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tematech/avstelecomsms.svg?style=flat-square)](https://packagist.org/packages/tematech/avstelecomsms)
 [![Build Status](https://img.shields.io/travis/tematech/avstelecomsms/master.svg?style=flat-square)](https://travis-ci.org/tematech/avstelecomsms)
