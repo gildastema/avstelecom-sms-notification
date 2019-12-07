@@ -46,7 +46,7 @@ class Avstelecomsms
 
     private function getPhone(string $phone): string
     {
-        if (sizeof($phone) == 9)
+        if (strlen($phone) == 9)
             return '237' . $phone;
         return $phone;
     }
