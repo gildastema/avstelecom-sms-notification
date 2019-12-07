@@ -8,7 +8,7 @@ class AvsTelecomChannel
 {
     public function send($notifiable, Notification $notification)
     {
-        $data = $notification->tosmsAvstelecon($notifiable);
+        $data = $notification->toavstelecom($notifiable);
         resolve(Avstelecomsms::class)->send($data['phone'], $data['message']);
     }
 }

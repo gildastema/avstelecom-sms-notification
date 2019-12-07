@@ -4,6 +4,7 @@ namespace Tematech\Avstelecomsms;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
+use Tematech\Avstelecomsms\Avstelecomsms;
 
 class AvstelecomsmsServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('avstelecomsms.php'),
+                __DIR__ . '/../config/config-avstelecomsms.php' => config_path('avstelecomsms.php'),
             ], 'config');
         }
         $this->app->bind(Client::class, function () {
@@ -28,7 +29,7 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'avstelecomsms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config-avstelecomsms.php', 'avstelecomsms');
 
         // Register the main class to use with the facade
         $this->app->singleton('avstelecomsms', function () {

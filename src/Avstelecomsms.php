@@ -28,9 +28,8 @@ class Avstelecomsms
                     'schedule'      => ''
                 ]
             ]);
-            $data =  $response->getBody();
-            $data = json_decode($data, true);
-            if ((int) $data['status'] !== 200) {
+            $data = json_decode($response->getBody()->getContents(), true);
+            if ($data['status'] != 200) {
                 return false;
             }
             return true;
