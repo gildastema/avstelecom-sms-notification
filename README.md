@@ -20,6 +20,14 @@ php artisan vendor:publish --provider='Tematech\Avstelecomsms\AvstelecomsmsServi
 ## Usage
 
 ``` php
+/**
+ * In notifiable 
+ * */
+ public function routeNotificationForAvstelecom()
+    {
+        return $this->phone;
+    }
+
  /**
      * Get the notification's delivery channels.
      *
@@ -28,13 +36,12 @@ php artisan vendor:publish --provider='Tematech\Avstelecomsms\AvstelecomsmsServi
      */
     public function via($notifiable)
     {
-        return ['mail', AvsTelecomChannel::class];
+        return ['avstelecom'];
     }
 
-    public function toavstelecom($notifiable){
+    public function toAvstelecom($notifiable){
         return [
-          'phone' => '', // E.164 phonenumber
-          'message' => ''
+          'message' => '' // message sms
         ];
     }
 ```
