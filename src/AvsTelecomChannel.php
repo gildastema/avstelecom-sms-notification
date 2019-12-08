@@ -8,7 +8,9 @@ class AvsTelecomChannel
 {
     public function send($notifiable, Notification $notification)
     {
-        $phone = $notifiable->routeNotificationFor('avstelecom', $notification);
+        if (!$phone = $notifiable->routeNotificationFor('avstelecom', $notification)) {
+            return;
+        }
         $data = $notification->toAvstelecom($notifiable);
         resolve(Avstelecomsms::class)->send($this->getPhone($phone), $data['message']);
     }
