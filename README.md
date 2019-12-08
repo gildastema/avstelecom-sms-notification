@@ -1,7 +1,7 @@
 # Laravel Notification for SMS AVSTELECOM
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tematech/avstelecomsms.svg?style=flat-square)](https://packagist.org/packages/tematech/avstelecomsms)
-[![Build Status](https://img.shields.io/travis/tematech/avstelecomsms/master.svg?style=flat-square)](https://travis-ci.org/tematech/avstelecomsms)
+[![Build Status](https://img.shields.io/travis/gildastema/avstelecom-sms-notification/master.svg?style=flat-square)](https://travis-ci.org/tematech/avstelecomsms)
 [![Quality Score](https://img.shields.io/scrutinizer/g/tematech/avstelecomsms.svg?style=flat-square)](https://scrutinizer-ci.com/g/tematech/avstelecomsms)
 [![Total Downloads](https://img.shields.io/packagist/dt/tematech/avstelecomsms.svg?style=flat-square)](https://packagist.org/packages/tematech/avstelecomsms)
 
