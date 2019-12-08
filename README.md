@@ -41,7 +41,7 @@ php artisan vendor:publish --provider='Tematech\Avstelecomsms\AvstelecomsmsServi
 
     public function toAvstelecom($notifiable){
         return [
-          'message' => ''
+          'message' => '' // message sms
         ];
     }
 ```
