@@ -13,6 +13,8 @@ You can install the package via composer:
 
 ```bash
 composer require tematech/avstelecomsms
+
+php artisan vendor:publish --provider=Tematech\Avstelecomsms\AvstelecomsmsServiceProvider
 ```
 
 ## Usage
