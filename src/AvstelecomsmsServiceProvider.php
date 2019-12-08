@@ -14,10 +14,11 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/config-avstelecomsms.php' => config_path('avstelecomsms.php'),
-            ], 'config');
+            //
         }
+        $this->publishes([
+            __DIR__ . '/../config/config-avstelecomsms.php' => config_path('avstelecomsms.php'),
+        ], 'config');
     }
 
     /**

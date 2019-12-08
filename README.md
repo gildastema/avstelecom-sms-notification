@@ -18,7 +18,23 @@ composer require tematech/avstelecomsms
 ## Usage
 
 ``` php
-// Usage description here
+ /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return ['mail', AvsTelecomChannel::class];
+    }
+
+    public function toavstelecom($notifiable){
+        return [
+          'phone' => '', // E.164 phonenumber
+          'message' => ''
+        ];
+    }
 ```
 
 ### Testing
