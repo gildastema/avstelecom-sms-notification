@@ -4,7 +4,6 @@ namespace Tematech\Avstelecomsms;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
-use Tematech\Avstelecomsms\Avstelecomsms;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 
@@ -34,10 +33,6 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
             new Client();
         });
         // Register the main class to use with the facade
-        $this->app->singleton('avstelecomsms', function () {
-            return new Avstelecomsms;
-        });
-
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('avstelecom', function () {
                 return new AvsTelecomChannel;

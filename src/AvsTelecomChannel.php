@@ -12,7 +12,7 @@ class AvsTelecomChannel
             return;
         }
         $data = $notification->toAvstelecom($notifiable);
-        resolve(Avstelecomsms::class)->send($this->getPhone($phone), $data['message']);
+        AvstelecomsmsFacade::send($this->getPhone($phone), $data['message']);
     }
     private function getPhone(string $phone)
     {

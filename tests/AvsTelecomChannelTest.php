@@ -2,11 +2,10 @@
 
 namespace Tematech\Avstelecomsms\Tests;
 
-use Mockery;
 use Illuminate\Notifications\Notifiable;
-use Tematech\Avstelecomsms\Avstelecomsms;
 use Illuminate\Notifications\Notification;
 use Tematech\Avstelecomsms\AvsTelecomChannel;
+use Tematech\Avstelecomsms\AvstelecomsmsFacade;
 
 class AvsTelecomChannelTest extends \Orchestra\Testbench\TestCase
 {
@@ -21,10 +20,8 @@ class AvsTelecomChannelTest extends \Orchestra\Testbench\TestCase
         $notification = new AvsTelecomNotificationTest;
         $notifiable = new AvsTelecomNotifiableTest;
         $channel = new AvsTelecomChannel();
-        $this->instance(Avstelecomsms::class , Mockery::mock(Avstelecomsms::class , function ($mock){
-            $mock->shouldReceive('send')
-                ->andReturn(true);
-        }));
+        AvstelecomsmsFacade::shouldReceive('send')
+                    ->andReturn(true);
         $channel->send($notifiable, $notification);
     }
 }
