@@ -16,6 +16,6 @@ class AvstelecomsmsFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'avstelecomsms';
+        return Avstelecomsms::class;
     }
 }
