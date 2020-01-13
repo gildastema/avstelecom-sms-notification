@@ -34,7 +34,7 @@ class Avstelecomsms
                     'schedule'      => ''
                 ]
             ]);
-            $data = json_decode($response->getBody()->getContents(), true);
+            $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
             if ($data['status'] != 200) {
                 return false;
             }
