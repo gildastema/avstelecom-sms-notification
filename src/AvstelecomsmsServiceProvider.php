@@ -19,6 +19,9 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config-avstelecomsms.php' => config_path('avstelecomsms.php'),
             ], 'config');
         }
+        $this->app->singleton(Avstelecomsms::class, function () {
+           return new Avstelecomsms(app(Client::class));
+        });
     }
 
     /**
