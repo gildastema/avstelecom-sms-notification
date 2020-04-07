@@ -3,12 +3,9 @@
 
 namespace Tematech\Avstelecomsms\Tests;
 
-
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Http;
 use Orchestra\Testbench\TestCase;
+use Tematech\Avstelecomsms\Avstelecomsms;
 use Tematech\Avstelecomsms\AvstelecomsmsFacade;
 
 class AvsTelecomTest extends TestCase
@@ -18,16 +15,11 @@ class AvsTelecomTest extends TestCase
      */
     public function send_ok()
     {
-        $mock = new MockHandler([
-            new Response(200, ['X-Foo' => 'Bar'],\GuzzleHttp\json_encode( ['status' => 200])),
+        $response = Http::fake([
+            'http://54.37.231.5:8090/bulksms' => Http::response(['status' => 200])
         ]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
-        $this->app->singleton(Client::class, function () use($client) {
-            return $client;
-        });
-       $this->assertTrue(AvstelecomsmsFacade::send('237691131446', 'cool'));
+        $this->assertTrue( resolve(Avstelecomsms::class)->send('678986466', 'cool') );
+        $this->assertTrue(AvstelecomsmsFacade::send('237691131446', 'cool'));
     }
 
     /**
@@ -35,15 +27,10 @@ class AvsTelecomTest extends TestCase
      */
     public function sendfailed()
     {
-        $mock = new MockHandler([
-            new Response(200, ['X-Foo' => 'Bar'],\GuzzleHttp\json_encode( ['status' => 401])),
+        $response = Http::fake([
+            'http://54.37.231.5:8090/bulksms' => Http::response(['status' => 400])
         ]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
-        $this->app->singleton(Client::class, function () use($client) {
-            return $client;
-        });
+        $this->assertFalse( resolve(Avstelecomsms::class)->send('678986466', 'cool') );
         $this->assertFalse(AvstelecomsmsFacade::send('237691131446', 'cool'));
     }
 }
