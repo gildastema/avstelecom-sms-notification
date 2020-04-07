@@ -2,16 +2,17 @@
 
 namespace Tematech\Avstelecomsms;
 
-use GuzzleHttp\Client;
+use Exception;
+use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\GuzzleException;
 
 class Avstelecomsms
 {
     protected $client;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        //
     }
     /**
      * Undocumented function
@@ -24,22 +25,21 @@ class Avstelecomsms
     {
         $timestamp = time();
         try {
-            $response =  $this->client->request('POST', 'http://54.37.231.5:8090/bulksms', [
-                'json' => [
-                    'id'            => config('avstelecomsms.id'),
-                    'timestamp'     => $timestamp,
-                    'signature'     => hash_hmac('SHA1', config('avstelecomsms.token') . $timestamp, config('avstelecomsms.secret')),
-                    'phonenumber'   => $this->getPhone($phone),
-                    'sms'           => $message,
-                    'schedule'      => ''
-                ]
+            $response = Http::post('http://54.37.231.5:8090/bulksms', [
+                'id'            => config('avstelecomsms.id'),
+                'timestamp'     => $timestamp,
+                'signature'     => hash_hmac('SHA1', config('avstelecomsms.token') . $timestamp, config('avstelecomsms.secret')),
+                'phonenumber'   => $this->getPhone($phone),
+                'sms'           => $message,
+                'schedule'      => ''
             ]);
-            $data = json_decode($response->getBody()->getContents(), true);
+            $data = $response->json();
+           
             if ($data['status'] != 200) {
                 return false;
             }
             return true;
-        } catch (GuzzleException $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
