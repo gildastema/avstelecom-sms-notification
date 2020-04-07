@@ -20,7 +20,7 @@ class AvstelecomsmsServiceProvider extends ServiceProvider
             ], 'config');
         }
         $this->app->singleton(Avstelecomsms::class, function () {
-           return new Avstelecomsms(app(Client::class));
+           return new Avstelecomsms();
         });
     }
 
