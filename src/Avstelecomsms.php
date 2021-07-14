@@ -25,7 +25,7 @@ class Avstelecomsms
     {
         $timestamp = time();
         try {
-            $response = Http::post('http://54.37.231.5:8090/bulksms', [
+            $response = Http::post('https://avspayment.ufipay.cm:8090/bulksms', [
                 'id'            => config('avstelecomsms.id'),
                 'timestamp'     => $timestamp,
                 'signature'     => hash_hmac('SHA1', config('avstelecomsms.token') . $timestamp, config('avstelecomsms.secret')),
@@ -34,7 +34,7 @@ class Avstelecomsms
                 'schedule'      => ''
             ]);
             $data = $response->json();
-           
+
             if ($data['status'] != 200) {
                 return false;
             }
