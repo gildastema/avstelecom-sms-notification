@@ -25,7 +25,7 @@ class Avstelecomsms
     {
         $timestamp = time();
         try {
-            $response = Http::post('https://avspayment.ufipay.cm:8090/bulksms', [
+            $response = Http::withOptions(['verify' => false])->post('https://avspayment.ufipay.cm:8090/bulksms', [
                 'id'            => config('avstelecomsms.id'),
                 'timestamp'     => $timestamp,
                 'signature'     => hash_hmac('SHA1', config('avstelecomsms.token') . $timestamp, config('avstelecomsms.secret')),
